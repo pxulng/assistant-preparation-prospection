@@ -62,4 +62,4 @@ Tous les chiffres sont **mesurés** sur des fiches synthétiques. Une seule exé
 
 ## Auteur
 
-[Paul NOM, lien LinkedIn]
+Paul Nguyen Phuoc
