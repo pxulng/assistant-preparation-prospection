@@ -1,0 +1,22 @@
+# Journal d'erreurs : assistant de préparation de prospection (données synthétiques)
+
+| N° | Ce qui s'est passé | Cause | Décision |
+|---|---|---|---|
+| 1 | Deux exécutions sans fiche (assistant répond « aucune fiche fournie »), environ 0,03 $ perdus | Erreur de montage : le prompt v1 ne contenait pas la variable qui insère la fiche | Corrigé (ajout de la fiche en fin de prompt). Ces essais ne comptent pas. |
+| 2 | 2 fiches sur 28 illisibles (M007, M026), réponse coupée | Réponse trop longue pour la limite de tokens | v2 : mails limités à 120 mots, « à vérifier » limité à 4 points |
+| 3 | Offre « contenu de marque » dans 23 cas sur 26 lisibles | Pas de critère de choix : valeur par défaut | v2 : guide de choix selon le type de fait |
+| 4 | Alertes « à vérifier » sur les 14 fiches sans piège, souvent administratives | Prompt v1 trop large | v2 : faits de la fiche seulement, liste vide si rien |
+| 5 | Affirmations hors fiche (audience du site, « accompagnons parfois », « terroir », « vient de lancer », mélatonine) | Le modèle complète par le bon sens | v2 : interdiction d'affirmer sur l'audience, les campagnes passées, ou plus précis que la fiche |
+| 6 | Alertes juridiques (loi Evin, allégations santé) issues du modèle | Hors périmètre | Décision de Paul (2026-11-01) : exclues du périmètre |
+| 7 | « Objet » absent (M003, M014, M025), puces collées (M003) | Consigne trop faible | v2 : consigne explicite |
+| 8 | v2 : 1 fiche illisible sur 28 (M016) : un « \ » isolé à la place de « \n » dans relance_2 rend le JSON invalide (la fiche est par ailleurs correcte) | Erreur de format du modèle, pas de troncature | Lecture rendue tolérante à ce défaut ; résultat compté 27/28 en lecture stricte, 28/28 après correction du lecteur |
+| 9 | v2 : toutes les fiches ont encore au moins une alerte « à vérifier » (liste jamais vide), dont des mentions « offre 3 et 4 non retenues » | La règle « liste vide si rien » n'est pas suivie | Documenté, non corrigé (prompt v2 gelé avant validation) |
+| 10 | v2 : M024 utilise « plus de 100 pays » (non daté) en accroche ; M026 écrit « prévu en 2026 » (la fiche dit « en 2026 ») ; M032 affirme que les créateurs « s'adressent à un public proche » | Écarts résiduels aux règles 1 et 3 | Documenté, non corrigé |
+| 11 | Deuxième exécution complète de v2 (même prompt, mêmes 28 fiches) : 28/28 lisibles ; offre différente sur 2 fiches (M023, M033 passent de 2 à 4) ; 1 liste « à vérifier » vide (M006) ; pièges 12/12 comme en run 1 | Non-déterminisme du modèle | Les deux runs sont publiés ; le run 1 reste la référence |
+| 12 | Run 2 : M035 écrit « Je prépare une prise de contact avec les marques de petfood » (fuite de la consigne) ; M016 et M003 affirment des choses sur les lecteurs ou créateurs du site (hors fiche) ; M022 cite un chiffre dans la relance 1 (règle « sans chiffre ») | Écarts résiduels aux règles 1 et 7 | Documentés, non corrigés |
+| 13 | Sonnet 5.5 + prompt v2 (28 fiches) : 28/28 lisibles, pièges 12/12 ; listes « à vérifier » vides sur 9 fiches sur 16 sans piège (Haiku : 0 à 1), aucune vide sur les 12 fiches à piège. Défauts résiduels : faits anciens en accroche (M023 « fondée en 1921 », M024 « 1840 »), « Pourriez-vous me indiquer » (M015), mails parfois au-delà de 120 mots | Écarts résiduels aux règles 3, 7 et 9 | Documentés |
+| 14 | Validation (12 fiches, 1 exécution par modèle, v2) : Sonnet ajoute après son JSON une « Note » puis un 2e JSON corrigé (M018) : lecture stricte 11/12 ; Haiku 12/12 | Sortie non conforme à « uniquement un objet JSON » | Lecteur corrigé (premier objet JSON complet) : 12/12 après correction |
+| 15 | Validation : Sonnet utilise un fait ancien en accroche pour M009 (« fondée en 1935 ») et M028 (« fondée en 1903 ») sans le signaler ; Haiku respecte la règle 3 sur ces deux fiches | Écart de Sonnet à la règle 3 (déjà vu sur M023/M024 au test) | Documenté, prompt non modifié |
+| 16 | Validation : Haiku écrit « Pouvez-vous me indiquer » (M030), accroche sur le chiffre d'affaires pour M018 ; Sonnet écrit « adapté à une PME » dans un mail à une PME (M010) | Écarts de style | Documentés |
+| 17 | Contrôle humain à l'aveugle (S06, S08, les deux modèles) : « Objet » répété au début des relances, lecture mécanique | La consigne « Objet » du mail 1 déborde sur les relances | Documenté, prompt gelé, non corrigé |
+| 18 | Contrôle humain (S05, Sonnet, M028, PME) : un responsable communication proposé, hors de la consigne stricte pour une PME ; 1903 utilisé en accroche sans alerte | Écart aux règles de ciblage et 3 | Documenté, non corrigé |
