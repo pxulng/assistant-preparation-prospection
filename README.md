@@ -60,6 +60,10 @@ Tous les chiffres sont **mesurés** sur des fiches synthétiques. Une seule exé
 2. Lancer, exporter en CSV, noter avec [`evaluation/grille_notation.md`](evaluation/grille_notation.md).
 3. Le jeu de validation ne doit être lancé qu'une fois par version.
 
+## Autre projet du portfolio
+
+[Assistant de tri et de brouillons de réponses pour un support client](https://github.com/pxulng/assistant-support-client) : même démarche d'évaluation (baseline sans IA, jeu de validation, comparaison de deux modèles, contrôle humain, journal d'erreurs), sur un autre cas d'usage.
+
 ## Auteur
 
-Paul Nguyen Phuoc, Linkedin : www.linkedin.com/in/paul-nguyen-phuoc-336456294
+Paul Nguyen Phuoc, [lien LinkedIn]
