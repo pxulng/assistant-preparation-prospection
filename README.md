@@ -47,7 +47,7 @@ Tous les chiffres sont **mesurés** sur des fiches synthétiques. Une seule exé
 
 | Dossier | Contenu |
 |---|---|
-| [`docs/`](docs/cadrage.md) | Cadrage : problème, périmètre, critères de réussite fixés avant les tests |
+| [`docs/`](docs/) | [Cadrage](docs/cadrage.md) (périmètre, critères fixés avant les tests) et [étude de cas](docs/etude_de_cas.md) |
 | [`data/`](data/) | 40 marques synthétiques (28 test, 12 validation), régie fictive, script de génération |
 | [`baseline/`](baseline/) | Gabarit sans IA et ses sorties |
 | [`prompts/`](prompts/) | Prompt v1 et prompt v2 (gelé avant la validation) |
