@@ -62,7 +62,7 @@ Tous les chiffres sont **mesurés** sur des fiches synthétiques. Une seule exé
 
 ## Autre projet du portfolio
 
-[Assistant de tri et de brouillons de réponses pour un support client](https://github.com/pxulng/assistant-support-client) : même démarche d'évaluation (baseline sans IA, jeu de validation, comparaison de deux modèles, contrôle humain, journal d'erreurs), sur un autre cas d'usage.
+[Assistant de tri et de brouillons de réponses pour un support client](https://github.com/pxulng/assistant-support-client-fr) : même démarche d'évaluation (baseline sans IA, jeu de validation, comparaison de deux modèles, contrôle humain, journal d'erreurs), sur un autre cas d'usage.
 
 ## Auteur
 
