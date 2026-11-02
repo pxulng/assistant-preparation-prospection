@@ -66,4 +66,4 @@ Tous les chiffres sont **mesurés** sur des fiches synthétiques. Une seule exé
 
 ## Auteur
 
-Paul Nguyen Phuoc, Linkedin : www.linkedin.com/in/paul-nguyen-phuoc-336456294
+Paul Nguyen Phuoc, [LinkedIn](https://www.linkedin.com/in/paul-nguyen-phuoc-336456294)
