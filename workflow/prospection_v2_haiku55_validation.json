@@ -1,0 +1,105 @@
+{
+  "name": "Prospection v2 Haiku 5.5",
+  "nodes": [
+    {
+      "name": "When clicking ‘Execute workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "name": "Demandes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// Nœud Code « Demandes » (Run Once for All Items)\n// 12 fiches SYNTHÉTIQUES, jeu VALIDATION. À lancer UNE SEULE FOIS.\nconst LIMITE = 12;\nconst demandes = [\n {\n  \"id\": \"M008\",\n  \"demande\": \"Marque : Les Jardins de Mélisse\\nSecteur : agroalimentaire\\nTaille : PME\\nFaits :\\n- Producteur de soupes et jus de légumes bio, Occitanie, créé en 2014.\\n- Effectif de 35 salariés sur la page entreprise, 52 salariés dans un article de presse locale (2025).\\n- Vente en magasins bio et en ligne.\\n- Levée de fonds de 3 M€ en 2024.\"\n },\n {\n  \"id\": \"M009\",\n  \"demande\": \"Marque : Boulangerie Pasqualini Frères\\nSecteur : agroalimentaire\\nTaille : ETI\\nFaits :\\n- Entreprise familiale de biscuits et gâteaux secs, Alsace, fondée en 1935.\\n- Chiffre d'affaires 2025 : 120 M€.\\n- Produits vendus en France et dans 12 pays.\"\n },\n {\n  \"id\": \"M010\",\n  \"demande\": \"Marque : Mielleraie du Quercy\\nSecteur : agroalimentaire\\nTaille : PME\\nFaits :\\n- Producteur et conditionneur de miel et de produits de la ruche, Lot.\\n- En 2020, la société a rejoint un label de commerce équitable et a recruté 8 apiculteurs partenaires.\\n- Page entreprise non mise à jour depuis 2022 ; chiffre d'affaires non communiqué.\"\n },\n {\n  \"id\": \"M018\",\n  \"demande\": \"Marque : Immunéa\\nSecteur : santé\\nTaille : grand groupe\\nFaits :\\n- Groupe de produits de santé grand public (immunité, rhume, hiver), siège à Paris.\\n- Chiffre d'affaires 2025 : 780 M€.\\n- Présent dans 45 pays.\"\n },\n {\n  \"id\": \"M019\",\n  \"demande\": \"Marque : Vitalpha Seniors\\nSecteur : santé\\nTaille : PME\\nFaits :\\n- Compléments alimentaires et aides au maintien de la forme pour les plus de 60 ans, Bordeaux.\\n- 25 salariés selon le site ; 40 selon un annuaire d'entreprises (2025).\\n- Vente en pharmacies et par correspondance.\\n- Partenariat avec une mutuelle régionale en 2025.\"\n },\n {\n  \"id\": \"M020\",\n  \"demande\": \"Marque : Ophtalie\\nSecteur : santé\\nTaille : ETI\\nFaits :\\n- Fabricant de produits de soin des yeux (larmes artificielles, compléments), Strasbourg.\\n- Chiffre d'affaires 2021 : 66 M€.\\n- Page « Actualités » : dernier communiqué en 2021 (nouveau site de production).\"\n },\n {\n  \"id\": \"M028\",\n  \"demande\": \"Marque : Rhumerie Saint-Calvaire\\nSecteur : alcool\\nTaille : PME\\nFaits :\\n- Rhumerie artisanale en Guadeloupe, fondée en 1903.\\n- Production : 600 000 bouteilles par an ; 60 salariés.\\n- Export vers l'Europe et l'Amérique du Nord.\\n- Édition anniversaire annoncée pour 2027.\"\n },\n {\n  \"id\": \"M029\",\n  \"demande\": \"Marque : Liqueurs Mathéo\\nSecteur : alcool\\nTaille : PME\\nFaits :\\n- Fabricant de liqueurs et d'apéritifs, Provence, entreprise familiale.\\n- Fondée en 1952 d'après le site, en 1958 d'après un article de presse régionale.\\n- Gamme de 15 références ; vendues en grande distribution régionale.\"\n },\n {\n  \"id\": \"M030\",\n  \"demande\": \"Marque : Maison Castelvieux\\nSecteur : alcool\\nTaille : ETI\\nFaits :\\n- Producteur de vins de Bordeaux et négociant, plusieurs châteaux.\\n- Chiffre d'affaires 2025 : 70 M€.\"\n },\n {\n  \"id\": \"M038\",\n  \"demande\": \"Marque : Granivora\\nSecteur : petfood\\nTaille : PME\\nFaits :\\n- Alimentation pour rongeurs, lapins et oiseaux, Normandie, créée en 1994.\\n- Chiffre d'affaires 2025 : 18 M€ ; 55 salariés.\\n- Gamme vendue en animaleries et jardineries.\\n- Lancement d'un emballage 100 % recyclable en 2026.\"\n },\n {\n  \"id\": \"M039\",\n  \"demande\": \"Marque : Aquavita\\nSecteur : petfood\\nTaille : PME\\nFaits :\\n- Fabricant d'aliments pour poissons d'aquarium et de bassin, Alsace.\\n- Fondé en 1985 d'après le site, en 1990 d'après un annuaire d'entreprises (2025).\\n- Vente en animaleries et jardineries.\"\n },\n {\n  \"id\": \"M040\",\n  \"demande\": \"Marque : Maison Pattelière\\nSecteur : petfood\\nTaille : grand groupe\\nFaits :\\n- Groupe d'alimentation et de santé animale, siège à Paris.\\n- Chiffre d'affaires 2025 : 950 M€.\"\n }\n];\nreturn demandes.slice(0, LIMITE).map((d) => ({ json: d }));"
+      }
+    },
+    {
+      "name": "Message a model",
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "claude-haiku-5-5",
+          "mode": "list",
+          "cachedResultName": "claude-haiku-5-5"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Tu es l'assistant de préparation de prospection de la régie Hexamédia. Un commercial te donne la fiche d'une marque (des faits). Tu prépares sa prise de contact : tu ne l'envoies jamais, il relit tout.\n\nRÉGIE (vendeur, fictive)\nHexamédia édite 4 sites : Saveurs&Co (cuisine, recettes, produits ; marques agroalimentaire), Vitalité Mag (santé, bien-être, nutrition ; marques santé), Cépages Magazine (vin, bière, spiritueux ; marques alcool), Pattes & Compagnie (animaux de compagnie ; marques petfood).\n4 offres : 1 Publicité display et vidéo ; 2 Contenu de marque (article ou recette sponsorisé) ; 3 Partenariat d'influence (créateurs du site) ; 4 Opération spéciale (jeu-concours, événement, temps fort saisonnier).\n\nRÈGLES\n1. N'utilise que les faits de la fiche. N'invente aucun chiffre, produit, événement, nom de personne ni résultat. Aucun prix, aucun résultat promis, aucun exemple de campagne passée. N'affirme rien sur l'audience des sites d'Hexamédia, sur ses campagnes passées ou sur ses clients, et ne reformule pas un fait de manière plus précise ou plus récente que la fiche (si la fiche dit seulement l'année, n'écris ni \"vient de\" ni \"récemment\").\n2. Si deux chiffres se contredisent, ne cite aucun des deux dans les mails et signale le conflit dans \"a_verifier\".\n3. Si un fait est daté de plus de 2 ans (par rapport à novembre 2026) ou sans date alors qu'il en faudrait une, ne l'utilise pas comme accroche et signale-le dans \"a_verifier\".\n4. Si une information utile manque (par exemple aucun fait récent), ne la devine pas : écris une accroche sobre sans fait précis et signale le manque dans \"a_verifier\".\n5. Fonctions à viser : donne 2 à 3 fonctions (intitulés de poste), jamais de noms de personnes. Adapte à la taille : PME -> dirigeant ou responsable marketing ; ETI -> direction marketing, communication/brand, digital ; grand groupe -> brand manager, responsable média ou partenariats, direction marketing.\n6. Choisis UNE offre principale d'après le type de fait, et justifie-la en une phrase qui cite un fait de la fiche. Guide : un lancement, un événement ou une date précise à venir -> 4 Opération spéciale ; une forte présence sur les réseaux sociaux, un partenariat d'influence ou une communauté en ligne -> 3 Partenariat d'influence ; un produit qui se prête à un usage, une recette ou une explication -> 2 Contenu de marque ; 1 Publicité display et vidéo seulement si aucun fait exploitable ne justifie une autre offre.\n7. Rédige 3 mails en français, courts, ton naturel et non insistant, sans jargon commercial, un seul appel à l'action par mail (proposer un échange de 15 minutes ou demander des disponibilités) :\n - email_1 (J0) : première ligne obligatoire \"Objet : {Marque} x {Site} : question courte\" ; commence par \"Bonjour,\" ; une accroche liée à un fait fiable de la fiche ; 2 à 3 puces, chacune sur sa ligne et commençant par \"• \" (puce suivie d'une espace) sur ce qu'Hexamédia peut apporter, centrées sur l'offre choisie ; un seul appel à l'action ; signature \"Prénom\".\n - relance_1 (J+4) : plus court, ne répète pas l'accroche ; reprend l'offre sous un autre angle tiré des faits ; sans exemple de campagne ni chiffre.\n - relance_2 (J+9) : \"soft reset\" : reconnaître que la proposition ne correspond peut-être pas à leurs enjeux actuels, élargir en une phrase aux autres offres, demander les prochains créneaux.\n8. \"a_verifier\" ne contient que des problèmes de faits de la fiche : chiffres contradictoires, faits anciens ou non datés utilisés ou écartés, information manquante. Maximum 4 points, une phrase chacun. Pas de conseil juridique ou réglementaire, pas de rappel du type \"remplacer Prénom\" ou \"aucun nom de contact\". Si rien ne pose problème, la liste est vide [].\n9. Reste concis : chaque mail fait 120 mots maximum.\n10. Pas d'emoji, pas de gras. Relis ton texte : orthographe et accords corrects.\n\nSORTIE : uniquement un objet JSON valide, sans texte autour, avec exactement ces clés :\n{\"fonctions\":[\"...\"],\"angle\":\"...\",\"offre\":\"1|2|3|4 + intitulé\",\"raison_offre\":\"...\",\"email_1\":\"...\",\"relance_1\":\"...\",\"relance_2\":\"...\",\"a_verifier\":[\"...\"]}\n\"a_verifier\" est une liste vide si tout est cohérent. Les retours à la ligne dans les mails s'écrivent \\n.\nFICHE DE LA MARQUE\n{{ $json.demande }}"
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 6000
+        }
+      }
+    },
+    {
+      "name": "Bloc de lecture",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        0
+      ],
+      "parameters": {
+        "jsCode": "// Nœud Code « Lecture » (Run Once for All Items)\nconst fiches = $('Demandes').all();\nconst sorties = [];\n$input.all().forEach((item, i) => {\n  const bloc = (item.json.content ?? []).find((c) => c.type === 'text');\n  const brut = bloc?.text ?? '';\n  let r;\n  try {\n    const m = brut.match(/\\{[\\s\\S]*\\}/);\n    const txt = (m ? m[0] : brut).replace(/\\\\(?![\"\\\\\\/bfnrtu])/g, '\\\\n'); // tolère un \\ isolé (oubli du n)\n    r = JSON.parse(txt);\n  } catch (e) {\n    r = { fonctions: [], angle: 'ERREUR_JSON', offre: '', raison_offre: '', email_1: brut, relance_1: '', relance_2: '', a_verifier: ['réponse illisible'] };\n  }\n  sorties.push({ json: {\n    id: fiches[i].json.id,\n    fonctions: (r.fonctions ?? []).join('; '),\n    angle: r.angle, offre: r.offre, raison_offre: r.raison_offre,\n    email_1: r.email_1, relance_1: r.relance_1, relance_2: r.relance_2,\n    a_verifier: (r.a_verifier ?? []).join(' | '),\n    input_tokens: item.json.usage?.input_tokens ?? null,\n    output_tokens: item.json.usage?.output_tokens ?? null,\n  } });\n});\nreturn sorties;"
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Demandes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Demandes": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Bloc de lecture",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  }
+}
